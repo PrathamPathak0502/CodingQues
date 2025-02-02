@@ -1,0 +1,7 @@
+C:\Program Files\Android\Android Studio1 android
+C:\Users\H.P\AppData\Local\Android\Sdk
+C:\Users\H.P\AppData\Local\Android\Sdk\emulator
+C:\Users\H.P\AppData\Local\Android\Sdk\tools
+C:\Users\H.P\AppData\Local\Android\Sdk\tools\bin
+
+cd C:\Users\H.P\AwesomeProject

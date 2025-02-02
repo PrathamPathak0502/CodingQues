@@ -1,0 +1,135 @@
+logic
+Business logic
+execution logic
+
+//taking input
+scanner sc= new scanner(system.in);
+int a=sc.nextInt();
+system.out.println("enter value 1");
+int b=sc.nextInt();
+system.out.println("enter value 2");
+int r1+obj.sum(a,b);
+
+//Operators
+1.Arithmatic operators
+2.Bitwise operator
+    Logical operators ===> & | ^
+    Shift operators ===> Left shift, right shift
+
+jshell
+
+
+34 & 23 = 2
+
+
+shift operators
+
+123>>3
+ 
+in case of right shift 
+123/2 pow(3)
+
+for left shift 
+123*2pow(2)
+
+ternary operator
+expression1 ? expression2 : expression3
+
+
+//Traversal of a linked list
+//Implementation of linked list
+   class
+   object
+   constructor
+//Insertion
+//deletion
+
+***Binary Tree***
+
+implementation of binary tree
+in order  traversal of a BST is a sorted array
+
+Steps to convert Binary tree in a BSt
+1. Find in order Traversal of a binary tree
+2. Sort the order
+3.Arrange again in the form of Binary tree
+4.Result ==> BST
+    
+
+***EXCEPTION HANDLING***   
+
+ // exception = run time error , finally key word can be ignored it is not neccessary This code typically involves cleanup operations like closing resources
+// keywords TRY , CATCH, FINALLY, THROW, THROWS
+//TRY :- to create the exception
+//Throws key word when declare exception it will show exception
+//unreported exception must be decleared or caught
+//either we can declear the exception or cathch the ecxeption by using catch
+//catch :- to catch the exception, it will only execute when there is exception
+//check the exception are the exception which can be predicted by compileer in advance
+//Airthmatic is not predicted by compiler in advance (it is unchecked exception)
+//Arrayindex out Bound is also a unchecked exception
+//Null pointer exception is also a unchecked exception
+//IO exception is example of checked exception
+//File not found exception is checked exception
+
+
+Defined Exception class
+ARithmetic
+fileNotFound
+IO exception
+Array out of index
+
+
+====================
+
+***Read and write Stream***
+
+Stream ==> flow of datai
+Read Stream ==> input
+System.in
+class==>fileInputStream
+
+write Stream ==> output
+System.out
+class==> 
+
+
+// 1. FileReader  ==> input Stream
+// 2. FileWriter ==> output Stream
+
+
+==================================
+Abstract class
+
+classes which cannot be instantiated
+abstract method
+
+===================================
+class ==> instantiated
+interface==> cannot be instantiated
+------------------------------------
+
+class ==> may be partially abstract or not abstract
+interface ==> fully Abstract
+------------------------------------------------------
+
+****Threads****
+light weight process which make execution of program easier 
+-------------------------------------------------------
+implementation of Threads
+1. by using thread class
+2. by using Runnable interface
+
+---------------------------------------------------------------
+***Life Cycle of Thread***
+New ==> before a thread is started
+Running ==> after Thread is started
+Terminated ==> after thread execution is completed
+
+---------------------------------------------------------------
+***Collection***
+> mechanism to storre multiple data together
+> The Collection in Java is a framework that provides an architecture to store and manipulate the group of objects.
+> The java.util package contains all the classes and interfaces for the Collection framework.
+
+

@@ -1,0 +1,94 @@
+import numpy as np
+import pandas as pd
+from sklearn.model_selection import train_test_split
+from sklearn.feature_extraction.text import TfidfVectorizer
+from sklearn.linear_model import LogisticRegression
+from sklearn.metrics import accuracy_score
+
+# Load the dataset
+raw_mail_data = pd.read_csv('/content/mail_data (2).csv')
+
+# Replace null values with an empty string
+mail_data = raw_mail_data.fillna('')
+
+# Print the first 5 rows of the dataframe
+print(mail_data.head())
+
+# Check the number of rows and columns in the dataframe
+print(mail_data.shape)
+
+# Convert labels: spam = 0, ham = 1
+mail_data['Category'] = mail_data['Category'].map({'spam': 0, 'ham': 1})
+
+# Separate data into features and labels
+X = mail_data['Message']
+Y = mail_data['Category']
+
+# Print feature and label data
+print(X.head())
+print(Y.head())
+
+# Split the dataset into training and test sets
+X_train, X_test, Y_train, Y_test = train_test_split(X, Y, test_size=0.2, random_state=3)
+
+# Print the shapes of the splits
+print(X_train.shape)
+print(X_test.shape)
+
+# Initialize TfidfVectorizer
+feature_extraction = TfidfVectorizer(min_df=1, stop_words='english', lowercase=True)
+
+# Transform the text data
+X_train_features = feature_extraction.fit_transform(X_train)
+X_test_features = feature_extraction.transform(X_test)
+
+# Print the shapes of the feature matrices
+print(X_train_features.shape)
+print(X_test_features.shape)
+
+# Convert Y_train and Y_test values to integers (though this should already be done by the map function)
+Y_train = Y_train.astype('int')
+Y_test = Y_test.astype('int')
+
+# Optional: Train a Logistic Regression model (if needed)
+model = LogisticRegression()
+model.fit(X_train_features, Y_train)
+
+# Predict on the test set
+Y_pred = model.predict(X_test_features)
+
+# Calculate accuracy
+accuracy = accuracy_score(Y_test, Y_pred)
+print(f'Accuracy: {accuracy}')
+print(X_train)
+print(X_train_features)
+model = LogisticRegression()
+# training the Logistic Regression model with the training data
+model.fit(X_train_features, Y_train)
+# prediction on training data
+
+prediction_on_training_data = model.predict(X_train_features)
+accuracy_on_training_data = accuracy_score(Y_train, prediction_on_training_data)
+print('Accuracy on training data : ', accuracy_on_training_data)
+# prediction on test data
+
+prediction_on_test_data = model.predict(X_test_features)
+accuracy_on_test_data = accuracy_score(Y_test, prediction_on_test_data)
+
+print('Accuracy on test data : ', accuracy_on_test_data)
+input_mail = [""]
+
+# convert text to feature vectors
+input_data_features = feature_extraction.transform(input_mail)
+
+# deviyo or sajjsno dekhte hai prediction
+
+prediction = model.predict(input_data_features)
+print(prediction)
+
+
+if (prediction[0]==1):
+  print('savdhan rhe satarak rhe!!')
+
+else:
+  print('Spam mail hai block maar de')

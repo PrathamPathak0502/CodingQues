@@ -1,0 +1,38 @@
+Docker
+
+docker run -d -p 27017 -27017  //check it once
+
+Configuration of  Docker daemon 
+
+There are two ways to configure the Docker daemon:
+
+1.Use a JSON configuration file. This is the preferred option, since it keeps all configurations in a single place.
+2.Use flags when starting dockerd.
+
+Docker daemon directory
+The Docker daemon persists all data in a single directory. This tracks everything related to Docker, including containers, images, volumes, service definition, and secrets.
+can configure the Docker daemon to use a different directory, using the data-root configuration option. For example:
+
+
+{
+  "data-root": "/mnt/docker-data"
+}
+
+//pod.yaml file to check Kubernetes working
+
+apiVersion: v1
+kind: Pod
+metadata:
+  name: demo
+spec:
+  containers:
+  - name: testpod
+    image: alpine:latest
+    command: ["ping", "8.8.8.8"]
+
+  ***Advance Java***
+
+
+
+  
+

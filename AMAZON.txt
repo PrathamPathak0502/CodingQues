@@ -1,0 +1,78 @@
+import os
+import requests
+from pathlib import Path
+import pandas as pd
+from PIL import Image
+import numpy as np
+import tensorflow as tf
+from tensorflow.keras.models import load_model
+
+
+def preprocess_image(image_path):
+    image = Image.open(image_path).convert('RGB')
+    image = image.resize((224, 224))  
+    image_array = np.array(image) / 255.0  
+    return image_array
+
+
+def download_image(url, save_path):
+    response = requests.get(url)
+    response.raise_for_status() 
+    with open(save_path, 'wb') as f:
+        f.write(response.content)
+
+
+def download_images(df, image_dir):
+    Path(image_dir).mkdir(parents=True, exist_ok=True)
+    for _, row in df.iterrows():
+        image_url = row['image_link']
+        image_filename = os.path.basename(image_url)
+        image_path = os.path.join(image_dir, image_filename)
+        download_image(image_url, image_path)
+        print(f"Downloaded {image_url} to {image_path}")
+
+
+csv_path = '/content/sample_test.csv'
+
+df = pd.read_csv(csv_path)
+print(df.head()) 
+
+
+image_dir = '/content/downloaded_images'
+download_images(df, image_dir)
+
+model_path = '/path/to/your/model/model.h5'
+model = load_model(model_path)
+
+
+def predict(image_path, model):
+    image_array = preprocess_image(image_path)
+    image_array = np.expand_dims(image_array, axis=0) 
+    prediction = model.predict(image_array)
+    return prediction
+
+def format_prediction(prediction):
+  
+    value = prediction[0]  
+    unit = "unit" 
+    return f"{value:.2f} {unit}"
+
+results = []
+for _, row in df.iterrows():
+    image_url = row['image_link']
+    image_filename = os.path.basename(image_url)
+    image_path = os.path.join(image_dir, image_filename)
+    
+    if os.path.exists(image_path):
+     
+        prediction = predict(image_path, model)
+        formatted_prediction = format_prediction(prediction)
+        results.append({'index': row['index'], 'prediction': formatted_prediction})
+    else:
+        results.append({'index': row['index'], 'prediction': ""}) 
+
+results_df = pd.DataFrame(results)
+results_df.to_csv('/content/test_out.csv', index=False)
+results_df = pd.DataFrame(results)
+results_df.to_csv('/content/test_out.csv', index=False)
+python src/sanity.py --file test_out.csv

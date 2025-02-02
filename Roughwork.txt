@@ -1,0 +1,24 @@
+class Node{
+     int data;
+
+    node(int data){
+        this.data=data;
+    }
+}
+class Stack {
+ void push(int data){
+    Node newNode=new Node(data);
+    head.next=new Nodde;
+    head=head.next;
+
+ }   
+}
+class test{
+    public static void main(String args[]){
+      stack.push(10);
+      stack.push(20);
+      stack.push(30);
+      stack.push(40)'
+      
+    }
+    }
